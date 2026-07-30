@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STATUS — Деловые связи. На основе ИИ.</title>
+<title id="pageTitle">STATUS — Деловые связи. На основе ИИ.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -575,6 +575,23 @@ footer{
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
 }
+
+/* ---------- Language toggle ---------- */
+.lang-toggle{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 12px;border-radius:999px;
+  background:var(--glass-bg);
+  border:1px solid var(--line-strong);
+  font-size:12.5px;letter-spacing:.03em;
+  transition:background .3s var(--ease), border-color .3s var(--ease);
+}
+.lang-toggle:hover{background:rgba(255,255,255,.08);}
+.lang-toggle .lang-opt{color:var(--ink-dim);transition:color .3s var(--ease);}
+.lang-toggle .lang-opt.active{color:var(--ink);font-weight:500;}
+.lang-toggle .lang-sep{color:var(--ink-dim);opacity:.5;}
+@media (max-width:600px){
+  .lang-toggle{padding:7px 10px;font-size:12px;}
+}
 </style>
 </head>
 <body>
@@ -587,31 +604,34 @@ footer{
   <div class="nav-glass">
     <div class="logo">STATUS</div>
     <nav class="nav-links">
-      <a href="#matchmaking">Продукт</a>
-      <a href="#concierge">ИИ</a>
-      <a href="#map">События</a>
-      <a href="#verified">Резиденты</a>
-      <a href="#pricing">Тарифы</a>
+      <a href="#matchmaking" data-i18n="nav_product">Продукт</a>
+      <a href="#concierge" data-i18n="nav_ai">ИИ</a>
+      <a href="#map" data-i18n="nav_events">События</a>
+      <a href="#verified" data-i18n="nav_residents">Резиденты</a>
+      <a href="#pricing" data-i18n="nav_pricing">Тарифы</a>
     </nav>
     <div class="nav-actions">
-      <a href="https://status-business.app/" target="_blank" class="link-btn">Войти</a>
-      <a href="#pricing" class="btn btn-primary btn-sm">Стать резидентом</a>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language / Сменить язык">
+        <span class="lang-opt active" data-lang="ru">RU</span><span class="lang-sep">/</span><span class="lang-opt" data-lang="en">EN</span>
+      </button>
+      <a href="https://status-business.app/" target="_blank" class="link-btn" data-i18n="nav_login">Войти</a>
+      <a href="#pricing" class="btn btn-primary btn-sm" data-i18n="cta_become_resident">Стать резидентом</a>
     </div>
   </div>
 </header>
 <section class="hero">
   <div class="hero-copy">
-    <span class="eyebrow">Приватный бизнес-клуб на базе ИИ</span>
-    <h1>Деловые связи.<br><em>На основе ИИ.</em></h1>
-    <p>STATUS находит нужных людей — сооснователя, инвестора, клиента — ещё до личной встречи.</p>
+    <span class="eyebrow" data-i18n="eyebrow">Приватный бизнес-клуб на базе ИИ</span>
+    <h1 data-i18n-html="hero_title">Деловые связи.<br><em>На основе ИИ.</em></h1>
+    <p data-i18n="hero_sub">STATUS находит нужных людей — сооснователя, инвестора, клиента — ещё до личной встречи.</p>
     <div class="hero-actions">
-      <a href="#pricing" class="btn btn-primary">Стать резидентом</a>
-      <a href="#" class="btn btn-ghost">Смотреть демо</a>
+      <a href="#pricing" class="btn btn-primary" data-i18n="cta_become_resident">Стать резидентом</a>
+      <a href="#" class="btn btn-ghost" data-i18n="cta_watch_demo">Смотреть демо</a>
     </div>
     <div class="stats">
-       <div class="stat"><b>Private</b><span>Закрытый запуск</span></div>
-       <div class="stat"><b>1st</b><span>Первая волна</span></div>
-       <div class="stat"><b>Invite</b><span>Только по инвайтам</span></div>
+       <div class="stat"><b>Private</b><span data-i18n="stat_private">Закрытый запуск</span></div>
+       <div class="stat"><b>1st</b><span data-i18n="stat_first">Первая волна</span></div>
+       <div class="stat"><b>Invite</b><span data-i18n="stat_invite">Только по инвайтам</span></div>
     </div>
   </div>
   <div class="hero-visual">
@@ -622,7 +642,7 @@ footer{
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </button>
         <div class="notch"></div>
-        <div class="screen-note" style="display:none;">Заглушка скриншота</div>
+        <div class="screen-note" style="display:none;" data-i18n="screen_note">Заглушка скриншота</div>
       </div>
     </div>
   </div>
@@ -677,30 +697,30 @@ footer{
 
 <section id="matchmaking">
   <div class="section-head reveal center">
-    <span class="section-tag">01 — Подбор с помощью ИИ</span>
-    <h2>Знакомства, которые понимают контекст, а не просто ключевые слова.</h2>
-    <p>STATUS анализирует намерения, отрасль и момент, чтобы находить именно тех людей, которые двигают ваш бизнес вперёд.</p>
+    <span class="section-tag" data-i18n="tag_01">01 — Подбор с помощью ИИ</span>
+    <h2 data-i18n="match_h2">Знакомства, которые понимают контекст, а не просто ключевые слова.</h2>
+    <p data-i18n="match_p">STATUS анализирует намерения, отрасль и момент, чтобы находить именно тех людей, которые двигают ваш бизнес вперёд.</p>
   </div>
   <div class="match-grid reveal-stagger">
     <div class="match-card">
       <span class="match-index">01</span>
       <div>
-        <h3>Сигнал, а не шум</h3>
-        <p>Каждый профиль оценивается по тысячам параметров, чтобы находить связи, которые невозможно найти вручную.</p>
+        <h3 data-i18n="match1_h3">Сигнал, а не шум</h3>
+        <p data-i18n="match1_p">Каждый профиль оценивается по тысячам параметров, чтобы находить связи, которые невозможно найти вручную.</p>
       </div>
     </div>
     <div class="match-card">
       <span class="match-index">02</span>
       <div>
-        <h3>Вовремя для вас</h3>
-        <p>Совпадения появляются, когда обе стороны готовы к разговору, а не лежат статичным списком.</p>
+        <h3 data-i18n="match2_h3">Вовремя для вас</h3>
+        <p data-i18n="match2_p">Совпадения появляются, когда обе стороны готовы к разговору, а не лежат статичным списком.</p>
       </div>
     </div>
     <div class="match-card">
       <span class="match-index">03</span>
       <div>
-        <h3>Тёплые знакомства по умолчанию</h3>
-        <p>Каждое знакомство сопровождается общим контекстом, поэтому первое сообщение никогда не звучит холодно.</p>
+        <h3 data-i18n="match3_h3">Тёплые знакомства по умолчанию</h3>
+        <p data-i18n="match3_p">Каждое знакомство сопровождается общим контекстом, поэтому первое сообщение никогда не звучит холодно.</p>
       </div>
     </div>
   </div>
@@ -715,21 +735,21 @@ footer{
     </div>
     <div>
       <div class="section-head" style="margin-bottom:50px;">
-        <span class="section-tag">02 — Вертикальная лента свайпов</span>
-        <h2>Знакомьтесь со своей сетью так же, как листаете всё остальное.</h2>
+        <span class="section-tag" data-i18n="tag_02">02 — Вертикальная лента свайпов</span>
+        <h2 data-i18n="swipe_h2">Знакомьтесь со своей сетью так же, как листаете всё остальное.</h2>
       </div>
       <div class="feature-list reveal-stagger">
         <div class="feature-row">
           <span class="feature-num">01</span>
-          <div><h4>Один профиль — одно решение</h4><p>Одна карточка за раз — никаких списков для просмотра.</p></div>
+          <div><h4 data-i18n="swipe1_h4">Один профиль — одно решение</h4><p data-i18n="swipe1_p">Одна карточка за раз — никаких списков для просмотра.</p></div>
         </div>
         <div class="feature-row">
           <span class="feature-num">02</span>
-          <div><h4>Создано для скорости</h4><p>Пролистывайте подобранные знакомства за то же время, что тратите на проверку уведомлений.</p></div>
+          <div><h4 data-i18n="swipe2_h4">Создано для скорости</h4><p data-i18n="swipe2_p">Пролистывайте подобранные знакомства за то же время, что тратите на проверку уведомлений.</p></div>
         </div>
         <div class="feature-row">
           <span class="feature-num">03</span>
-          <div><h4>Всегда взаимно</h4><p>Контакт открывается только при взаимном интересе.</p></div>
+          <div><h4 data-i18n="swipe3_h4">Всегда взаимно</h4><p data-i18n="swipe3_p">Контакт открывается только при взаимном интересе.</p></div>
         </div>
       </div>
     </div>
@@ -840,9 +860,9 @@ footer{
 
 <section id="map">
   <div class="section-head reveal">
-    <span class="section-tag">03 — Карта событий</span>
-    <h2>Узнайте, где встреча, ещё до прилёта.</h2>
-    <p>Смотрите, какие резиденты, основатели и инвесторы собираются в вашем следующем городе.</p>
+    <span class="section-tag" data-i18n="tag_03">03 — Карта событий</span>
+    <h2 data-i18n="map_h2">Узнайте, где встреча, ещё до прилёта.</h2>
+    <p data-i18n="map_p">Смотрите, какие резиденты, основатели и инвесторы собираются в вашем следующем городе.</p>
   </div>
   <div class="map-panel reveal">
     <video class="map-bg-video" src="map-video.mp4" autoplay muted loop playsinline></video>
@@ -853,8 +873,8 @@ footer{
     <div class="city-pin" style="top:38%;left:66%;animation-delay:2s;"></div>
     <div class="city-pin" style="top:64%;left:80%;animation-delay:.5s;"></div>
     <div class="map-legend">
-      <b>Нью-Йорк, Дубай, Сингапур</b>
-      12 резиденций встречаются на этой неделе
+      <b data-i18n="map_cities">Нью-Йорк, Дубай, Сингапур</b>
+      <span data-i18n="map_count">12 резиденций встречаются на этой неделе</span>
     </div>
   </div>
 </section>
@@ -863,21 +883,21 @@ footer{
   <div class="concierge-wrap">
     <div>
       <div class="section-head" style="margin-bottom:50px;">
-        <span class="section-tag">04 — Закрытый отбор</span>
-        <h2>Не для всех. И это не случайно.</h2>
-        <p>Мы берём в клуб только лучших — предпринимателей уровня «сделал», топ-экспертов и настоящих гениев в своей области. Каждая заявка проходит отбор, и цена входа не случайна: она отсекает случайных людей, чтобы вы оказались в комнате только с теми, кто на вашем уровне или выше.</p>
+        <span class="section-tag" data-i18n="tag_04">04 — Закрытый отбор</span>
+        <h2 data-i18n="concierge_h2">Не для всех. И это не случайно.</h2>
+        <p data-i18n="concierge_p">Мы берём в клуб только лучших — предпринимателей уровня «сделал», топ-экспертов и настоящих гениев в своей области. Каждая заявка проходит отбор, и цена входа не случайна: она отсекает случайных людей, чтобы вы оказались в комнате только с теми, кто на вашем уровне или выше.</p>
       </div>
     </div>
     <div class="chat-panel selection-panel reveal">
       <div class="selection-stat">
         <div class="selection-num">3%</div>
-        <div class="selection-label">заявок проходят отбор и получают приглашение</div>
+        <div class="selection-label" data-i18n="selection_label">заявок проходят отбор и получают приглашение</div>
       </div>
       <div class="selection-divider"></div>
       <ul class="selection-criteria">
-        <li><span class="mark">✓</span> Основатели и руководители с подтверждённым результатом</li>
-        <li><span class="mark">✓</span> Инвесторы и партнёры фондов</li>
-        <li><span class="mark">✓</span> Признанные эксперты в своей отрасли</li>
+        <li><span class="mark">✓</span> <span data-i18n="crit1">Основатели и руководители с подтверждённым результатом</span></li>
+        <li><span class="mark">✓</span> <span data-i18n="crit2">Инвесторы и партнёры фондов</span></li>
+        <li><span class="mark">✓</span> <span data-i18n="crit3">Признанные эксперты в своей отрасли</span></li>
       </ul>
     </div>
   </div>
@@ -885,113 +905,113 @@ footer{
 
 <section id="verified">
   <div class="section-head reveal">
-    <span class="section-tag">05 — Проверенные участники</span>
-    <h2>Каждый профиль подтверждён человеком.</h2>
+    <span class="section-tag" data-i18n="tag_05">05 — Проверенные участники</span>
+    <h2 data-i18n="verified_h2">Каждый профиль подтверждён человеком.</h2>
   </div>
   <div class="verify-grid reveal-stagger">
-    <div class="verify-card"><div class="mark">✓</div><h4>Личность проверена</h4><p>Госдокументы и данные из бизнес-реестра проверяются перед доступом.</p></div>
-    <div class="verify-card"><div class="mark">✓</div><h4>Должность подтверждена</h4><p>Должности и компании проверяются по публичным и закрытым источникам.</p></div>
-    <div class="verify-card"><div class="mark">✓</div><h4>Ручная проверка</h4><p>Каждую заявку проверяет человек перед одобрением.</p></div>
-    <div class="verify-card"><div class="mark">✓</div><h4>Постоянный аудит</h4><p>Неактивные или недостоверные профили регулярно удаляются.</p></div>
+    <div class="verify-card"><div class="mark">✓</div><h4 data-i18n="verify1_h4">Личность проверена</h4><p data-i18n="verify1_p">Госдокументы и данные из бизнес-реестра проверяются перед доступом.</p></div>
+    <div class="verify-card"><div class="mark">✓</div><h4 data-i18n="verify2_h4">Должность подтверждена</h4><p data-i18n="verify2_p">Должности и компании проверяются по публичным и закрытым источникам.</p></div>
+    <div class="verify-card"><div class="mark">✓</div><h4 data-i18n="verify3_h4">Ручная проверка</h4><p data-i18n="verify3_p">Каждую заявку проверяет человек перед одобрением.</p></div>
+    <div class="verify-card"><div class="mark">✓</div><h4 data-i18n="verify4_h4">Постоянный аудит</h4><p data-i18n="verify4_p">Неактивные или недостоверные профили регулярно удаляются.</p></div>
   </div>
 </section>
 
 <section id="community">
   <div class="section-head reveal">
-    <span class="section-tag">06 — Отзывы</span>
-    <h2>Резиденты — от первого лица.</h2>
+    <span class="section-tag" data-i18n="tag_06">06 — Отзывы</span>
+    <h2 data-i18n="testi_h2">Резиденты — от первого лица.</h2>
   </div>
   <div class="testi-track reveal-stagger">
-    <div class="testi-card"><p>«Я закрыл посевной раунд благодаря знакомству, которое STATUS устроил уже на первой неделе».</p><div class="testi-person"><b>Даниэль К.</b><span>Основатель, Берлин</span></div></div>
-    <div class="testi-card"><p>«Консьерж находит людей, о которых я даже не думал искать».</p><div class="testi-person"><b>Амара О.</b><span>Инвестор, Лагос</span></div></div>
-    <div class="testi-card"><p>«Это единственная сеть, где на каждое сообщение стоит отвечать».</p><div class="testi-person"><b>Вэй Л.</b><span>Операционный директор, Сингапур</span></div></div>
+    <div class="testi-card"><p data-i18n="testi1_q">«Я закрыл посевной раунд благодаря знакомству, которое STATUS устроил уже на первой неделе».</p><div class="testi-person"><b>Даниэль К.</b><span data-i18n="testi1_role">Основатель, Берлин</span></div></div>
+    <div class="testi-card"><p data-i18n="testi2_q">«Консьерж находит людей, о которых я даже не думал искать».</p><div class="testi-person"><b>Амара О.</b><span data-i18n="testi2_role">Инвестор, Лагос</span></div></div>
+    <div class="testi-card"><p data-i18n="testi3_q">«Это единственная сеть, где на каждое сообщение стоит отвечать».</p><div class="testi-person"><b>Вэй Л.</b><span data-i18n="testi3_role">Операционный директор, Сингапур</span></div></div>
   </div>
 </section>
 
 <section id="pricing">
   <div class="section-head reveal">
-    <span class="section-tag">07 — Тарифы</span>
-    <h2>Членство, а не подписка.</h2>
+    <span class="section-tag" data-i18n="tag_07">07 — Тарифы</span>
+    <h2 data-i18n="pricing_h2">Членство, а не подписка.</h2>
   </div>
   <div class="pricing-grid reveal-stagger">
     <div class="price-card locked">
       <div class="price-lock">
         <span class="price-lock-icon">🔒</span>
-        <span class="price-lock-text">Открывается после 200 резидентов</span>
+        <span class="price-lock-text" data-i18n="price_locked_text">Открывается после 200 резидентов</span>
       </div>
       <div class="price-card-blur">
-        <div class="price-name">Резидентство</div>
-        <div class="price-amount">от $250<span>/мес</span></div>
-        <div class="price-desc">Стандартный тариф после закрытия набора Foundation.</div>
+        <div class="price-name" data-i18n="price1_name">Резидентство</div>
+        <div class="price-amount" data-i18n-html="price1_amount">от $250<span>/мес</span></div>
+        <div class="price-desc" data-i18n="price1_desc">Стандартный тариф после закрытия набора Foundation.</div>
         <ul class="price-list">
-          <li>Полный доступ к сообществу</li>
-          <li>Ежемесячная подписка</li>
-          <li>Без порога входа</li>
+          <li data-i18n="price1_li1">Полный доступ к сообществу</li>
+          <li data-i18n="price1_li2">Ежемесячная подписка</li>
+          <li data-i18n="price1_li3">Без порога входа</li>
         </ul>
-        <a href="https://t.me/statusinform" target="_blank" class="btn btn-ghost">Написать «Клуб»</a>
+        <a href="https://t.me/statusinform" target="_blank" class="btn btn-ghost" data-i18n="cta_write_club">Написать «Клуб»</a>
       </div>
     </div>
     <div class="price-card featured">
-      <div class="price-badge">Только первые 200 резидентов</div>
+      <div class="price-badge" data-i18n="price2_badge">Только первые 200 резидентов</div>
       <div class="price-name">Foundation</div>
-      <div class="price-compare">$250<span>/мес обычно</span></div>
-      <div class="price-amount">$750<span> навсегда</span></div>
-      <div class="price-desc">Разово — и без ежемесячных платежей.</div>
+      <div class="price-compare" data-i18n-html="price2_compare">$250<span>/мес обычно</span></div>
+      <div class="price-amount" data-i18n-html="price2_amount">$750<span> навсегда</span></div>
+      <div class="price-desc" data-i18n="price2_desc">Разово — и без ежемесячных платежей.</div>
       <ul class="price-list">
-        <li>Пожизненный доступ</li>
-        <li>Без ежемесячной платы</li>
-        <li>Клубная карта</li>
-        <li>Статус «Резидент»</li>
-        <li>Подарок от клуба</li>
-        <li>Лицевой счёт 500 SDX (1 $ = 1 SDX)</li>
+        <li data-i18n="price2_li1">Пожизненный доступ</li>
+        <li data-i18n="price2_li2">Без ежемесячной платы</li>
+        <li data-i18n="price2_li3">Клубная карта</li>
+        <li data-i18n="price2_li4">Статус «Резидент»</li>
+        <li data-i18n="price2_li5">Подарок от клуба</li>
+        <li data-i18n="price2_li6">Лицевой счёт 500 SDX (1 $ = 1 SDX)</li>
       </ul>
-      <a href="https://t.me/statusinform" target="_blank" class="btn btn-primary">Стать резидентом</a>
+      <a href="https://t.me/statusinform" target="_blank" class="btn btn-primary" data-i18n="cta_become_resident">Стать резидентом</a>
     </div>
     <div class="price-card">
-      <div class="price-name">Партнёрские условия</div>
-      <div class="price-amount">Индивидуально</div>
-      <div class="price-desc">Комфортный ежемесячный взнос по итогам личного интервью.</div>
+      <div class="price-name" data-i18n="price3_name">Партнёрские условия</div>
+      <div class="price-amount" data-i18n="price3_amount">Индивидуально</div>
+      <div class="price-desc" data-i18n="price3_desc">Комфортный ежемесячный взнос по итогам личного интервью.</div>
       <ul class="price-list">
-        <li>Персональный формат участия</li>
-        <li>Индивидуальные условия входа</li>
-        <li>Отбор по интервью</li>
+        <li data-i18n="price3_li1">Персональный формат участия</li>
+        <li data-i18n="price3_li2">Индивидуальные условия входа</li>
+        <li data-i18n="price3_li3">Отбор по интервью</li>
       </ul>
-      <a href="https://t.me/statusinform" target="_blank" class="btn btn-ghost">Отправить «Проверка»</a>
+      <a href="https://t.me/statusinform" target="_blank" class="btn btn-ghost" data-i18n="cta_send_check">Отправить «Проверка»</a>
     </div>
   </div>
 
   <div class="pricing-steps reveal">
-    <div class="pricing-steps-head">Как получить персональный ключ приглашения</div>
+    <div class="pricing-steps-head" data-i18n="steps_head">Как получить персональный ключ приглашения</div>
     <ol class="pricing-steps-list">
-      <li>Нажмите «Стать резидентом»</li>
-      <li>Напишите слово «Клуб»</li>
-      <li>Оплатите взнос</li>
-      <li>Активируйте приложение</li>
+      <li data-i18n="step1">Нажмите «Стать резидентом»</li>
+      <li data-i18n="step2">Напишите слово «Клуб»</li>
+      <li data-i18n="step3">Оплатите взнос</li>
+      <li data-i18n="step4">Активируйте приложение</li>
     </ol>
   </div>
 </section>
 
 <section id="faq">
   <div class="section-head reveal">
-    <span class="section-tag">08 — Вопросы и ответы</span>
-    <h2>Перед подачей заявки.</h2>
+    <span class="section-tag" data-i18n="tag_08">08 — Вопросы и ответы</span>
+    <h2 data-i18n="faq_h2">Перед подачей заявки.</h2>
   </div>
   <div class="faq-list reveal">
     <div class="faq-item">
-      <div class="faq-q"><span>Для кого STATUS?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>Для основателей, инвесторов, руководителей и операционных директоров, которым нужны связи, а не просто контакты.</p></div>
+      <div class="faq-q"><span data-i18n="faq1_q">Для кого STATUS?</span><span class="plus">+</span></div>
+      <div class="faq-a"><p data-i18n="faq1_a">Для основателей, инвесторов, руководителей и операционных директоров, которым нужны связи, а не просто контакты.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q"><span>Как работает верификация?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>Каждая заявка проверяется по документам и бизнес-записям, а затем рассматривается человеком перед одобрением.</p></div>
+      <div class="faq-q"><span data-i18n="faq2_q">Как работает верификация?</span><span class="plus">+</span></div>
+      <div class="faq-a"><p data-i18n="faq2_a">Каждая заявка проверяется по документам и бизнес-записям, а затем рассматривается человеком перед одобрением.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q"><span>Можно ли отменить в любой момент?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>Да. Резидентство продлевается ежемесячно без обязательного периода.</p></div>
+      <div class="faq-q"><span data-i18n="faq3_q">Можно ли отменить в любой момент?</span><span class="plus">+</span></div>
+      <div class="faq-a"><p data-i18n="faq3_a">Да. Резидентство продлевается ежемесячно без обязательного периода.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q"><span>Доступен ли STATUS по всему миру?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>Резиденты есть в 147 странах, с наибольшей концентрацией сообществ в крупных финансовых и стартап-хабах.</p></div>
+      <div class="faq-q"><span data-i18n="faq4_q">Доступен ли STATUS по всему миру?</span><span class="plus">+</span></div>
+      <div class="faq-a"><p data-i18n="faq4_a">Резиденты есть в 147 странах, с наибольшей концентрацией сообществ в крупных финансовых и стартап-хабах.</p></div>
     </div>
   </div>
 </section>
@@ -999,19 +1019,19 @@ footer{
 <footer>
   <div class="footer-top">
     <div class="footer-cta">
-      <h2>Ваша следующая деловая связь уже здесь.</h2>
+      <h2 data-i18n="footer_cta_h2">Ваша следующая деловая связь уже здесь.</h2>
     </div>
-    <a href="#pricing" class="btn btn-primary">Стать резидентом</a>
+    <a href="#pricing" class="btn btn-primary" data-i18n="cta_become_resident">Стать резидентом</a>
   </div>
   <div class="footer-cols">
-    <div class="footer-col"><span>Продукт</span><a href="#matchmaking">ИИ-подбор</a><a href="#swipe">Лента свайпов</a><a href="#map">Карта событий</a><a href="#concierge">ИИ-консьерж</a></div>
-    <div class="footer-col"><span>Компания</span><a href="#">О нас</a><a href="#">Карьера</a><a href="#">Пресса</a></div>
-    <div class="footer-col"><span>Ресурсы</span><a href="#faq">Вопросы и ответы</a><a href="#pricing">Тарифы</a><a href="#">Контакты</a></div>
-    <div class="footer-col"><span>Юридическая информация</span><a href="#">Конфиденциальность</a><a href="#">Условия</a><a href="#">Безопасность</a></div>
+    <div class="footer-col"><span data-i18n="footer_col1_head">Продукт</span><a href="#matchmaking" data-i18n="footer_col1_l1">ИИ-подбор</a><a href="#swipe" data-i18n="footer_col1_l2">Лента свайпов</a><a href="#map" data-i18n="footer_col1_l3">Карта событий</a><a href="#concierge" data-i18n="footer_col1_l4">ИИ-консьерж</a></div>
+    <div class="footer-col"><span data-i18n="footer_col2_head">Компания</span><a href="#" data-i18n="footer_col2_l1">О нас</a><a href="#" data-i18n="footer_col2_l2">Карьера</a><a href="#" data-i18n="footer_col2_l3">Пресса</a></div>
+    <div class="footer-col"><span data-i18n="footer_col3_head">Ресурсы</span><a href="#faq" data-i18n="footer_col3_l1">Вопросы и ответы</a><a href="#pricing" data-i18n="footer_col3_l2">Тарифы</a><a href="#" data-i18n="footer_col3_l3">Контакты</a></div>
+    <div class="footer-col"><span data-i18n="footer_col4_head">Юридическая информация</span><a href="#" data-i18n="footer_col4_l1">Конфиденциальность</a><a href="#" data-i18n="footer_col4_l2">Условия</a><a href="#" data-i18n="footer_col4_l3">Безопасность</a></div>
   </div>
   <div class="footer-bottom">
-    <span>© 2030 STATUS. Все права защищены.</span>
-    <span>Приватный бизнес-клуб</span>
+    <span data-i18n="footer_copy">© 2030 STATUS. Все права защищены.</span>
+    <span data-i18n="footer_tag">Приватный бизнес-клуб</span>
   </div>
 </footer>
 
@@ -1072,6 +1092,549 @@ function animateGrain(){
   requestAnimationFrame(animateGrain);
 }
 animateGrain();
+</script>
+
+<script>
+const i18n = {
+  "page_title": {
+    "ru": "STATUS — Деловые связи. На основе ИИ.",
+    "en": "STATUS — Business connections. Powered by AI."
+  },
+  "nav_product": {
+    "ru": "Продукт",
+    "en": "Product"
+  },
+  "nav_ai": {
+    "ru": "ИИ",
+    "en": "AI"
+  },
+  "nav_events": {
+    "ru": "События",
+    "en": "Events"
+  },
+  "nav_residents": {
+    "ru": "Резиденты",
+    "en": "Residents"
+  },
+  "nav_pricing": {
+    "ru": "Тарифы",
+    "en": "Pricing"
+  },
+  "nav_login": {
+    "ru": "Войти",
+    "en": "Log in"
+  },
+  "cta_become_resident": {
+    "ru": "Стать резидентом",
+    "en": "Become a resident"
+  },
+  "eyebrow": {
+    "ru": "Приватный бизнес-клуб на базе ИИ",
+    "en": "A private, AI-powered business club"
+  },
+  "hero_title": {
+    "ru": "Деловые связи.<br><em>На основе ИИ.</em>",
+    "en": "Business connections.<br><em>Powered by AI.</em>"
+  },
+  "hero_sub": {
+    "ru": "STATUS находит нужных людей — сооснователя, инвестора, клиента — ещё до личной встречи.",
+    "en": "STATUS finds the right people — a co-founder, an investor, a client — before you ever meet in person."
+  },
+  "cta_watch_demo": {
+    "ru": "Смотреть демо",
+    "en": "Watch demo"
+  },
+  "stat_private": {
+    "ru": "Закрытый запуск",
+    "en": "Private launch"
+  },
+  "stat_first": {
+    "ru": "Первая волна",
+    "en": "First wave"
+  },
+  "stat_invite": {
+    "ru": "Только по инвайтам",
+    "en": "Invite-only"
+  },
+  "screen_note": {
+    "ru": "Заглушка скриншота",
+    "en": "Screenshot placeholder"
+  },
+  "tag_01": {
+    "ru": "01 — Подбор с помощью ИИ",
+    "en": "01 — AI matchmaking"
+  },
+  "match_h2": {
+    "ru": "Знакомства, которые понимают контекст, а не просто ключевые слова.",
+    "en": "Introductions that understand context — not just keywords."
+  },
+  "match_p": {
+    "ru": "STATUS анализирует намерения, отрасль и момент, чтобы находить именно тех людей, которые двигают ваш бизнес вперёд.",
+    "en": "STATUS reads intent, industry, and timing to surface the people who actually move your business forward."
+  },
+  "match1_h3": {
+    "ru": "Сигнал, а не шум",
+    "en": "Signal, not noise"
+  },
+  "match1_p": {
+    "ru": "Каждый профиль оценивается по тысячам параметров, чтобы находить связи, которые невозможно найти вручную.",
+    "en": "Every profile is scored across thousands of signals to surface connections you'd never find manually."
+  },
+  "match2_h3": {
+    "ru": "Вовремя для вас",
+    "en": "Timed for you"
+  },
+  "match2_p": {
+    "ru": "Совпадения появляются, когда обе стороны готовы к разговору, а не лежат статичным списком.",
+    "en": "Matches surface the moment both sides are ready to talk — not as a static list to scroll through."
+  },
+  "match3_h3": {
+    "ru": "Тёплые знакомства по умолчанию",
+    "en": "Warm intros by default"
+  },
+  "match3_p": {
+    "ru": "Каждое знакомство сопровождается общим контекстом, поэтому первое сообщение никогда не звучит холодно.",
+    "en": "Every introduction comes with shared context, so the first message never lands cold."
+  },
+  "tag_02": {
+    "ru": "02 — Вертикальная лента свайпов",
+    "en": "02 — Vertical swipe feed"
+  },
+  "swipe_h2": {
+    "ru": "Знакомьтесь со своей сетью так же, как листаете всё остальное.",
+    "en": "Meet your network the same way you scroll through everything else."
+  },
+  "swipe1_h4": {
+    "ru": "Один профиль — одно решение",
+    "en": "One profile, one decision"
+  },
+  "swipe1_p": {
+    "ru": "Одна карточка за раз — никаких списков для просмотра.",
+    "en": "One card at a time — no lists to sift through."
+  },
+  "swipe2_h4": {
+    "ru": "Создано для скорости",
+    "en": "Built for speed"
+  },
+  "swipe2_p": {
+    "ru": "Пролистывайте подобранные знакомства за то же время, что тратите на проверку уведомлений.",
+    "en": "Swipe through curated introductions in the same time it takes to check your notifications."
+  },
+  "swipe3_h4": {
+    "ru": "Всегда взаимно",
+    "en": "Always mutual"
+  },
+  "swipe3_p": {
+    "ru": "Контакт открывается только при взаимном интересе.",
+    "en": "Contact only unlocks when the interest is mutual."
+  },
+  "tag_03": {
+    "ru": "03 — Карта событий",
+    "en": "03 — Event map"
+  },
+  "map_h2": {
+    "ru": "Узнайте, где встреча, ещё до прилёта.",
+    "en": "Know where the meetup is before you land."
+  },
+  "map_p": {
+    "ru": "Смотрите, какие резиденты, основатели и инвесторы собираются в вашем следующем городе.",
+    "en": "See which residents, founders, and investors are gathering in your next city."
+  },
+  "map_cities": {
+    "ru": "Нью-Йорк, Дубай, Сингапур",
+    "en": "New York, Dubai, Singapore"
+  },
+  "map_count": {
+    "ru": "12 резиденций встречаются на этой неделе",
+    "en": "12 residents meeting up this week"
+  },
+  "tag_04": {
+    "ru": "04 — Закрытый отбор",
+    "en": "04 — Curated selection"
+  },
+  "concierge_h2": {
+    "ru": "Не для всех. И это не случайно.",
+    "en": "Not for everyone. And that's the point."
+  },
+  "concierge_p": {
+    "ru": "Мы берём в клуб только лучших — предпринимателей уровня «сделал», топ-экспертов и настоящих гениев в своей области. Каждая заявка проходит отбор, и цена входа не случайна: она отсекает случайных людей, чтобы вы оказались в комнате только с теми, кто на вашем уровне или выше.",
+    "en": "We only let in the best — founders who've actually shipped, top-tier experts, and genuine leaders in their field. Every application is screened, and the cost of entry isn't arbitrary: it filters out the casual crowd, so you're only ever in the room with people at your level or above."
+  },
+  "selection_label": {
+    "ru": "заявок проходят отбор и получают приглашение",
+    "en": "of applicants are selected and invited"
+  },
+  "crit1": {
+    "ru": "Основатели и руководители с подтверждённым результатом",
+    "en": "Founders and executives with a proven track record"
+  },
+  "crit2": {
+    "ru": "Инвесторы и партнёры фондов",
+    "en": "Investors and fund partners"
+  },
+  "crit3": {
+    "ru": "Признанные эксперты в своей отрасли",
+    "en": "Recognized experts in their industry"
+  },
+  "tag_05": {
+    "ru": "05 — Проверенные участники",
+    "en": "05 — Verified members"
+  },
+  "verified_h2": {
+    "ru": "Каждый профиль подтверждён человеком.",
+    "en": "Every profile is verified by a human."
+  },
+  "verify1_h4": {
+    "ru": "Личность проверена",
+    "en": "Identity verified"
+  },
+  "verify1_p": {
+    "ru": "Госдокументы и данные из бизнес-реестра проверяются перед доступом.",
+    "en": "Government ID and business registry data are checked before access is granted."
+  },
+  "verify2_h4": {
+    "ru": "Должность подтверждена",
+    "en": "Role confirmed"
+  },
+  "verify2_p": {
+    "ru": "Должности и компании проверяются по публичным и закрытым источникам.",
+    "en": "Titles and companies are cross-checked against public and private sources."
+  },
+  "verify3_h4": {
+    "ru": "Ручная проверка",
+    "en": "Manual review"
+  },
+  "verify3_p": {
+    "ru": "Каждую заявку проверяет человек перед одобрением.",
+    "en": "A human reviews every application before it's approved."
+  },
+  "verify4_h4": {
+    "ru": "Постоянный аудит",
+    "en": "Ongoing audits"
+  },
+  "verify4_p": {
+    "ru": "Неактивные или недостоверные профили регулярно удаляются.",
+    "en": "Inactive or unverifiable profiles are regularly removed."
+  },
+  "tag_06": {
+    "ru": "06 — Отзывы",
+    "en": "06 — Testimonials"
+  },
+  "testi_h2": {
+    "ru": "Резиденты — от первого лица.",
+    "en": "Residents, in their own words."
+  },
+  "testi1_q": {
+    "ru": "«Я закрыл посевной раунд благодаря знакомству, которое STATUS устроил уже на первой неделе».",
+    "en": "\"I closed my seed round thanks to an introduction STATUS made in the first week.\""
+  },
+  "testi1_role": {
+    "ru": "Основатель, Берлин",
+    "en": "Founder, Berlin"
+  },
+  "testi2_q": {
+    "ru": "«Консьерж находит людей, о которых я даже не думал искать».",
+    "en": "\"The concierge finds people I never would have thought to look for.\""
+  },
+  "testi2_role": {
+    "ru": "Инвестор, Лагос",
+    "en": "Investor, Lagos"
+  },
+  "testi3_q": {
+    "ru": "«Это единственная сеть, где на каждое сообщение стоит отвечать».",
+    "en": "\"It's the only network where every message is actually worth replying to.\""
+  },
+  "testi3_role": {
+    "ru": "Операционный директор, Сингапур",
+    "en": "COO, Singapore"
+  },
+  "tag_07": {
+    "ru": "07 — Тарифы",
+    "en": "07 — Pricing"
+  },
+  "pricing_h2": {
+    "ru": "Членство, а не подписка.",
+    "en": "Membership, not a subscription."
+  },
+  "price_locked_text": {
+    "ru": "Открывается после 200 резидентов",
+    "en": "Unlocks after 200 residents"
+  },
+  "price1_name": {
+    "ru": "Резидентство",
+    "en": "Residency"
+  },
+  "price1_amount": {
+    "ru": "от $250<span>/мес</span>",
+    "en": "from $250<span>/mo</span>"
+  },
+  "price1_desc": {
+    "ru": "Стандартный тариф после закрытия набора Foundation.",
+    "en": "The standard plan once the Foundation cohort closes."
+  },
+  "price1_li1": {
+    "ru": "Полный доступ к сообществу",
+    "en": "Full access to the community"
+  },
+  "price1_li2": {
+    "ru": "Ежемесячная подписка",
+    "en": "Monthly subscription"
+  },
+  "price1_li3": {
+    "ru": "Без порога входа",
+    "en": "No entry threshold"
+  },
+  "cta_write_club": {
+    "ru": "Написать «Клуб»",
+    "en": "Message \"Club\""
+  },
+  "price2_badge": {
+    "ru": "Только первые 200 резидентов",
+    "en": "Only the first 200 residents"
+  },
+  "price2_compare": {
+    "ru": "$250<span>/мес обычно</span>",
+    "en": "$250<span>/mo usually</span>"
+  },
+  "price2_amount": {
+    "ru": "$750<span> навсегда</span>",
+    "en": "$750<span> for life</span>"
+  },
+  "price2_desc": {
+    "ru": "Разово — и без ежемесячных платежей.",
+    "en": "One payment — no monthly fees after that."
+  },
+  "price2_li1": {
+    "ru": "Пожизненный доступ",
+    "en": "Lifetime access"
+  },
+  "price2_li2": {
+    "ru": "Без ежемесячной платы",
+    "en": "No monthly fee"
+  },
+  "price2_li3": {
+    "ru": "Клубная карта",
+    "en": "Club card"
+  },
+  "price2_li4": {
+    "ru": "Статус «Резидент»",
+    "en": "\"Resident\" status"
+  },
+  "price2_li5": {
+    "ru": "Подарок от клуба",
+    "en": "A gift from the club"
+  },
+  "price2_li6": {
+    "ru": "Лицевой счёт 500 SDX (1 $ = 1 SDX)",
+    "en": "A 500 SDX account balance (1 $ = 1 SDX)"
+  },
+  "price3_name": {
+    "ru": "Партнёрские условия",
+    "en": "Partner terms"
+  },
+  "price3_amount": {
+    "ru": "Индивидуально",
+    "en": "Custom"
+  },
+  "price3_desc": {
+    "ru": "Комфортный ежемесячный взнос по итогам личного интервью.",
+    "en": "A comfortable monthly fee set after a personal interview."
+  },
+  "price3_li1": {
+    "ru": "Персональный формат участия",
+    "en": "A personalized participation format"
+  },
+  "price3_li2": {
+    "ru": "Индивидуальные условия входа",
+    "en": "Custom entry terms"
+  },
+  "price3_li3": {
+    "ru": "Отбор по интервью",
+    "en": "Interview-based selection"
+  },
+  "cta_send_check": {
+    "ru": "Отправить «Проверка»",
+    "en": "Send \"Check\""
+  },
+  "steps_head": {
+    "ru": "Как получить персональный ключ приглашения",
+    "en": "How to get your personal invite key"
+  },
+  "step1": {
+    "ru": "Нажмите «Стать резидентом»",
+    "en": "Tap \"Become a resident\""
+  },
+  "step2": {
+    "ru": "Напишите слово «Клуб»",
+    "en": "Send the word \"Club\""
+  },
+  "step3": {
+    "ru": "Оплатите взнос",
+    "en": "Pay the fee"
+  },
+  "step4": {
+    "ru": "Активируйте приложение",
+    "en": "Activate the app"
+  },
+  "tag_08": {
+    "ru": "08 — Вопросы и ответы",
+    "en": "08 — FAQ"
+  },
+  "faq_h2": {
+    "ru": "Перед подачей заявки.",
+    "en": "Before you apply."
+  },
+  "faq1_q": {
+    "ru": "Для кого STATUS?",
+    "en": "Who is STATUS for?"
+  },
+  "faq1_a": {
+    "ru": "Для основателей, инвесторов, руководителей и операционных директоров, которым нужны связи, а не просто контакты.",
+    "en": "For founders, investors, executives, and COOs who need real connections, not just contacts."
+  },
+  "faq2_q": {
+    "ru": "Как работает верификация?",
+    "en": "How does verification work?"
+  },
+  "faq2_a": {
+    "ru": "Каждая заявка проверяется по документам и бизнес-записям, а затем рассматривается человеком перед одобрением.",
+    "en": "Every application is checked against documents and business records, then reviewed by a person before approval."
+  },
+  "faq3_q": {
+    "ru": "Можно ли отменить в любой момент?",
+    "en": "Can I cancel at any time?"
+  },
+  "faq3_a": {
+    "ru": "Да. Резидентство продлевается ежемесячно без обязательного периода.",
+    "en": "Yes. Residency renews monthly with no minimum commitment."
+  },
+  "faq4_q": {
+    "ru": "Доступен ли STATUS по всему миру?",
+    "en": "Is STATUS available worldwide?"
+  },
+  "faq4_a": {
+    "ru": "Резиденты есть в 147 странах, с наибольшей концентрацией сообществ в крупных финансовых и стартап-хабах.",
+    "en": "Residents are in 147 countries, with the highest concentration in major financial and startup hubs."
+  },
+  "footer_cta_h2": {
+    "ru": "Ваша следующая деловая связь уже здесь.",
+    "en": "Your next business connection is already here."
+  },
+  "footer_col1_head": {
+    "ru": "Продукт",
+    "en": "Product"
+  },
+  "footer_col1_l1": {
+    "ru": "ИИ-подбор",
+    "en": "AI matchmaking"
+  },
+  "footer_col1_l2": {
+    "ru": "Лента свайпов",
+    "en": "Swipe feed"
+  },
+  "footer_col1_l3": {
+    "ru": "Карта событий",
+    "en": "Event map"
+  },
+  "footer_col1_l4": {
+    "ru": "ИИ-консьерж",
+    "en": "AI concierge"
+  },
+  "footer_col2_head": {
+    "ru": "Компания",
+    "en": "Company"
+  },
+  "footer_col2_l1": {
+    "ru": "О нас",
+    "en": "About"
+  },
+  "footer_col2_l2": {
+    "ru": "Карьера",
+    "en": "Careers"
+  },
+  "footer_col2_l3": {
+    "ru": "Пресса",
+    "en": "Press"
+  },
+  "footer_col3_head": {
+    "ru": "Ресурсы",
+    "en": "Resources"
+  },
+  "footer_col3_l1": {
+    "ru": "Вопросы и ответы",
+    "en": "FAQ"
+  },
+  "footer_col3_l2": {
+    "ru": "Тарифы",
+    "en": "Pricing"
+  },
+  "footer_col3_l3": {
+    "ru": "Контакты",
+    "en": "Contact"
+  },
+  "footer_col4_head": {
+    "ru": "Юридическая информация",
+    "en": "Legal"
+  },
+  "footer_col4_l1": {
+    "ru": "Конфиденциальность",
+    "en": "Privacy"
+  },
+  "footer_col4_l2": {
+    "ru": "Условия",
+    "en": "Terms"
+  },
+  "footer_col4_l3": {
+    "ru": "Безопасность",
+    "en": "Security"
+  },
+  "footer_copy": {
+    "ru": "© 2030 STATUS. Все права защищены.",
+    "en": "© 2030 STATUS. All rights reserved."
+  },
+  "footer_tag": {
+    "ru": "Приватный бизнес-клуб",
+    "en": "A private business club"
+  }
+};
+
+function applyLanguage(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[key] && i18n[key][lang] !== undefined) {
+      el.textContent = i18n[key][lang];
+    }
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (i18n[key] && i18n[key][lang] !== undefined) {
+      el.innerHTML = i18n[key][lang];
+    }
+  });
+  const titleEl = document.getElementById('pageTitle');
+  if (titleEl && i18n['page_title']) {
+    titleEl.textContent = i18n['page_title'][lang];
+    document.title = i18n['page_title'][lang];
+  }
+  const htmlRoot = document.getElementById('htmlRoot');
+  if (htmlRoot) htmlRoot.setAttribute('lang', lang);
+
+  const toggle = document.getElementById('langToggle');
+  if (toggle) {
+    toggle.querySelectorAll('.lang-opt').forEach(opt => {
+      opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+    });
+  }
+  currentLang = lang;
+}
+
+let currentLang = 'ru';
+const langToggleBtn = document.getElementById('langToggle');
+if (langToggleBtn) {
+  langToggleBtn.addEventListener('click', () => {
+    applyLanguage(currentLang === 'ru' ? 'en' : 'ru');
+  });
+}
 </script>
 </body>
 </html>
